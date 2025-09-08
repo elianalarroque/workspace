@@ -80,3 +80,17 @@ conventionalcommits.org/eb/v1.0.0
 ### git diff 
 
 muestras las diferencias, lo que yo he añadido se verá en verde.
+
+
+fork: clon o copia de repositorio en tu iser.
+
+añado una copia desde un punto en la historia, pero para crear mi propio repositorio, aunque sigue linkeado al master.
+Ejemplo: quiero crearme un vscode
+forkeo en microsoft vscode y hago mi desarrollo, puedo presentarlo al master pero no significa que lo vayan a aceptar.
+
+rama (branch)
+es una linea de desarrollo
+pueden existir muchas ramas en paralelo, se reconcilian cuando hacemos un merge, fusionar masters. Tambien se pueden funcionar ramas.
+
+
+checkout master or main
