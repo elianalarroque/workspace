@@ -1,0 +1,9 @@
+01-archivos.zip
+folder1
+folder1/abc.txt
+folder1/archivo-con-texto.txt
+folder1/archivo-sin-texto.txt
+imagenes
+primero.txt
+segundo.txt
+tercero.txt

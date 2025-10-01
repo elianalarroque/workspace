@@ -1,0 +1,121 @@
+
+server {
+
+	# Tiene que exponer el contenido de “/var/www/html/” en el puerto 80 (HTTP)
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	# Bonus: guardar el log de acceso de Nginx en el archivo “/var/www/html/logs.log” (para que pueda verse en http://0.0.0.0/logs.log)
+
+	access_log /var/www/html/logs.log;
+
+	# Este es el HTML inicial
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	# Debe devolver un 404 si se accede a un archivo que no existe
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	# Debe devolver un error 500 en “http://0.0.0.0/error”
+	location /error {
+		return 500;
+	}
+
+	# Tiene que tener una ruta en “http://0.0.0.0/respuesta” que acepte un parámetro en la URL y, si ese parámetro es “json”, devuelva un JSON y, si es “html”, devuelva un HTML. Es decir, http://0.0.0.0/respuesta?json=loquesea devuelve un JSON, y http://0.0.0.0/respuesta?html=loquesea devuelve un HTML. 
+	## Si no se envía ninguno de los dos parámetros, se devuelve un 404
+
+	location /respuesta { 
+		if ($arg_json) {
+			add_header Content-Type "application/json" always;
+			return 200 '{"mensaje":"Respuesta JSON"}';
+		}
+		if ($arg_html) {
+			add_header Content-type "text/html" always;
+			return 200 '<html><body><h1>Respuesta HTML</h1></body></html>';
+
+		}
+		return 404;
+	}
+
+
+	# Para los 4 métodos principales (GET, POST, PUT, DELETE), hay que añadir una #ruta en “http://0.0.0.0/metodo” que devuelva un 201 con un JSON especificando #el método que se ha subido. Por ejemplo, si hago un PUT a esa ruta, se me #devolverá un JSON con un mensaje de este tipo: ‘{“mensaje”: “Has hecho una #petición PUT”}’. Con un POST, el resultado sería un JSON con ‘{“mensaje”: “Has #hecho una petición POST”}’
+	location /metodo {
+		if ($request_method = GET) {
+        return 201 '{"mensaje":"Has hecho una petición GET"}';
+    }
+	    if ($request_method = POST) {
+        return 201 '{"mensaje":"Has hecho una petición POST"}';
+    }
+	    if ($request_method = PUT) {
+        return 201 '{"mensaje":"Has hecho una petición PUT"}';
+    }
+	    if ($request_method = DELETE) {
+        return 201 '{"mensaje":"Has hecho una petición DELETE"}';
+    }
+	
+	}
+
+	# Debe tener una ruta en “http://0.0.0.0/cabecera” que me devuelva un 204 con una cabecera inventada (la que queráis)
+	location /cabecera {
+		add_header Cabecera inventada;
+		return 204;
+	}
+
+	# Debe tener una ruta en “http://0.0.0.0/redireccion1” que me redirija a “https://w3schools.com“
+	# Debe tener una ruta en “http://0.0.0.0/redireccion2” que me redirija a “http://0.0.0.0/cabecera”
+	rewrite /redireccion1 https://w3schools.com redirect;
+	rewrite /redireccion2 http://0.0.0.0/cabecera;
+
+
+	
+}
+
+
+#  Además del puerto 80, tiene que exponer también “/var/www/html” en el puerto 8000 (el resto de rutas de los apartados anteriores no hay que exponerlos en el puerto 8000, solo el contenido de “/var/www/html”)
+server {
+	listen 8000;
+
+	# Este es el HTML inicial
+	index index.html index.htm index.nginx-debian.html;
+
+	root /var/www/html;
+	location / {
+		try_files $uri $uri/ =403;
+	}
+}
+
+
+
+# # Tiene que exponer “/var/www/html” en el puerto 443 con HTTPS (el resto de rutas de los apartados anteriores no hay que exponerlos en el puerto 443, solo el contenido de “/var/www/html”). Para ello deberá tener un certificado y una clave privada. Añadir autenticación básica (auth_basic)
+server {
+	listen              443;
+
+	# Este es el HTML inicial
+	index index.html index.htm index.nginx-debian.html;
+
+	# Activamos la capa de SSL
+	ssl                 on;
+	server_name         0.0.0.0;
+
+	auth_basic "Contenido restringido";
+	auth_basic_user_file /etc/nginx/.htpasswd;
+
+	# Clave privada y el certificado público
+	ssl_certificate     /etc/nginx/certs/certificado-proyecto.pem;
+	ssl_certificate_key /etc/nginx/certs/clave-proyecto.pem;
+	
+
+	# Parámetro de SSL
+	ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+	ssl_ciphers         HIGH:!aNULL:!MD5;
+
+	root /var/www/html;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}

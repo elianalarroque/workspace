@@ -1,0 +1,6 @@
+Hola, he creado dos usuarios para la autenticacion básica
+user: usuario1 
+pass: 1234
+
+user: usuario2
+pass: 1234

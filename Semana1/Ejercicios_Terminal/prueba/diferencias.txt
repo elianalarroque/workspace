@@ -1,0 +1,15 @@
+1c1
+< esto
+---
+> esto 
+4a5,9
+> totalmente
+> diferente
+> de 
+> la 
+> anterior
+6d10
+< numero
+7a12,13
+> parte 
+> b

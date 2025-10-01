@@ -1,0 +1,5 @@
+# Vamos a meter una autenticación Basic (usuario + contraseña), y para ello hay que instalar ese paquete: "sudo apt install apache2-utils"
+	# Para crear un usuario y contraseña, hay que ejecutar "sudo htpasswd -c /etc/nginx/.htpasswd usuario1"
+	# Para añadir usuarios: "sudo htpasswd /etc/nginx/.htpasswd usuario2"
+	auth_basic "Contenido restringido";
+	auth_basic_user_file /etc/nginx/.htpasswd;
