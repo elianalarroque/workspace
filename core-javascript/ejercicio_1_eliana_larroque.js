@@ -14,13 +14,15 @@
 
 
 function isLeapYear(year) {
+    let result;
     if (year % 400 == 0) {
-        return true;
+        result = true;
     } else if (year % 100 == 0) {
-        return false; 
+        result = false; 
     } else if (year % 4 == 0) {
-        return true;
+        result = true;
     } else {
-        return false;
+        result = false;
     }
+    return result
 }
