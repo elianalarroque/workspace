@@ -246,16 +246,16 @@ for(let numero_impar = 1; numero_impar <= numero_entero; numero_impar++) {
 };
 
 
-/*!!!!!!!!!!!!!!!!!!!!!!!PREGUNTAR AL PROFESOR SOBRE LA , AL FINAL*/
+// /*!!!!!!!!!!!!!!!!!!!!!!!PREGUNTAR AL PROFESOR SOBRE LA , AL FINAL*/
 
 
-/*
-11. Preguntar un número de números a introducir, después, preguntar por
-esos números, por último, sacar por pantalla la suma de los mismos. Un
-ejemplo sería: “Dime un número” -> 3. Después, preguntar 3 veces: “uno
-de los sumandos es?” -> 4, 3, 2. Y por último, cuando se han conseguido
-todos los números, responder la suma -> 9.
-*/
+// /*
+// 11. Preguntar un número de números a introducir, después, preguntar por
+// esos números, por último, sacar por pantalla la suma de los mismos. Un
+// ejemplo sería: “Dime un número” -> 3. Después, preguntar 3 veces: “uno
+// de los sumandos es?” -> 4, 3, 2. Y por último, cuando se han conseguido
+// todos los números, responder la suma -> 9.
+// */
 
 //EJERCICIO HECHO EN CLASE EL VIERNES 26/10 ./ejercicio11-2.js
 
@@ -272,4 +272,17 @@ imprimen. Un ejemplo sería con el número 5:
 
 
 */
+
+let triangle_lines = parseInt(window.prompt("Dime un numero entero"))
+
+for(let i = 1; i <= triangle_lines; i++) {
+    let numbers_line = 2 * i - 1;
+    let line = " ";
+
+    for (let j = 0; j < i; j++) {
+        line += numbers_line - 2 * j + " ";
+
+        }
+    document.write(line + '<br>');
+}
 
