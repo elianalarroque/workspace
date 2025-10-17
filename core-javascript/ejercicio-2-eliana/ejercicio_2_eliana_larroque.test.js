@@ -1,10 +1,4 @@
-// desarrollar una nueva clase de arrays con funcion snail.
 const { SuperArray } = require('./ejercicio_2_eliana_larroque.js');
-
-test('defines snail() as a method', () => {
-  let tester = new SuperArray();
-  expect(typeof tester.snail).toBe('function');
-});
 
 test(`input not valid`, () => {
   let arr1 = new SuperArray(2, 6, 4);
@@ -43,7 +37,7 @@ test(`empty array as input`, () => {
   let arr7 = new SuperArray();
   expect(arr7.snail(1, 5)).toEqual([]);
 });
-test(`array of only one element, one column, one row`, () => {
+test(`array of only one element, one col, one row`, () => {
   let arr8 = new SuperArray(1);
   expect(arr8.snail(1, 1)).toEqual([[1]]);
   let arr9 = new SuperArray(5);
@@ -56,7 +50,7 @@ test(`empty array as input`, () => {
 });
 
 test(`empty array as input, with parameters of 0 rows, 0 cols `, () => {
-  let arr11 = new SuperArray([0]);
+  let arr11 = new SuperArray([]);
   expect(arr11.snail(0, 0)).toEqual([]);
 });
 
