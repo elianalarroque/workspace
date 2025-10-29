@@ -1,0 +1,19 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Pokedex</h1>
+    <select id="pokemonSelector" onchange="showPokemon()"></select>
+    <!-- <input type="text" id="pokemonText" /> -->
+    <!-- <button type="button" onclick="showPokemon()">Show in Pokedex</button> -->
+
+    <div class="pokemon-container">
+        <div id="pokedexCanva">
+            <img id="pokemonImage">
+        </div>
+    </div>
+    <div id="pokemonCries"></div>
+    <script src="./pokedex.js"></script>
+</body>
