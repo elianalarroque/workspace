@@ -1,0 +1,35 @@
+body {
+  background-color: #bde0fe;
+  font-family: Arial, Helvetica, sans-serif;
+  /* cdb4db; */
+}
+
+ol {
+  background-color: #a2d2ff;
+  border-radius: 10px;
+}
+
+/* ol > li:nth-child(even) {
+  background-color: #cdb4db;
+} */
+
+ul {
+    background-color: #a2d2ff ;
+    border-radius: 10px;
+}
+
+nav {
+    background-color: #cdb4db;
+}
+
+header {
+    text-align: center;
+}
+
+form {
+    background-color: #cdb4db;
+    padding: 10px;
+    margin: auto;
+    border-radius: 5px;
+
+}
